@@ -33,5 +33,5 @@ npm run dev
 
 Open browser at:
 ```
-http://localhost:9001
+http://localhost:5173
 ```
