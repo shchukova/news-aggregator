@@ -1,0 +1,10 @@
+langchain
+openai
+python-dotenv
+python-socketio
+gtts
+pygame
+# pyaudio== 0.2.11
+whisper
+SpeechRecognition
+google.cloud
