@@ -3,8 +3,8 @@ import React from 'react';
 import { useSocketContext } from '../socket_context'; 
 
 const VideoCall = () => {
-  const { isConnected, socket } = useSocketContext();
-  const [running, setRunning] = React.useState(false);
+  const { isConnected,running, setRunning, socket } = useSocketContext();
+  
 
   const startMic = () => {
     console.log("Emitting start_recording");

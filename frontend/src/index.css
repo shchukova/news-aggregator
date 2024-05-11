@@ -7,3 +7,16 @@
     @apply m-0 p-0 box-border min-h-screen bg-gray-300;
   }
 }
+
+@keyframes fadeRed {
+  0%, 100% {
+      background-color: #ef4444; /* Tailwind bg-red-500, darker red */
+  }
+  50% {
+      background-color: #f87171; /* Tailwind bg-red-400, slightly lighter red */
+  }
+}
+
+.animate-pulse {
+  animation: fadeRed 2s infinite;
+}

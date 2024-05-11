@@ -7,8 +7,10 @@ const useSocket = () => {
     const [isConnected, setIsConnected] = useState(false);
     const [ddx, setDdx] = useState("");
     const [qa, setQa] = useState("");
+    const [transcript, setTranscript] = useState("");
+    const [running, setRunning] = useState(false);
     const socketRef = useRef(null);
-
+    
     if (!socketRef.current) {
         socketRef.current = io(SOCKET_URL, { autoConnect: false });
     }
@@ -34,6 +36,15 @@ const useSocket = () => {
             setQa(data.replaceAll("\n", "\n\n"));
         });
 
+        function updateTranscript(newData, currentData) {
+            const separator = "\n\n"; // Since you use "\n\n" to separate sentences
+            const updatedTranscript = (currentData + separator + newData).split(separator);
+            return updatedTranscript.slice(-5).join(separator); // Keep only the last five sentences
+        }
+        socket.on("transcript", data => {
+            console.log(data);
+            setTranscript(prevTranscript => updateTranscript(data.replaceAll("\n", "\n\n"), prevTranscript));
+        });
         socket.connect();
 
         return () => {
@@ -41,11 +52,12 @@ const useSocket = () => {
             socket.off('disconnect');
             socket.off("cds_ddx");
             socket.off("cds_qa");
+            socket.off("transcript");
             socket.disconnect();
         };
     }, []);
 
-    return { isConnected, ddx, qa, socket: socketRef.current };
+    return { isConnected, ddx, qa, transcript, running, setRunning, socket: socketRef.current };
 };
 
 export default useSocket;
