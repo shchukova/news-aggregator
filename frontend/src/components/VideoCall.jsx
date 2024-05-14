@@ -45,7 +45,7 @@ const VideoCall = () => {
               </button> 
             )
           ) : (
-            <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded" onClick={stopMic} disabled>Not connected</button>
+            <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded" onClick={stopMic} disabled>Fail</button>
           )}
         </div>
         
